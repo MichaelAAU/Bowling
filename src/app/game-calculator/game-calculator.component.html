@@ -1,0 +1,38 @@
+<p>
+  GET request --->&nbsp;<span style="color:blueviolet" *ngIf="getRequestDone">Done</span>
+  <button mat-raised-button color="accent"
+    (click)="onCalculateGame()">
+    Calculate New Game
+  </button>
+</p>
+<p>
+  GET response:&nbsp;<span style="color:blueviolet" *ngIf="getResponseDone">{{getResponseText}}</span>
+</p>
+<div class="table-container mat-elevation-z8">
+  <table mat-table [dataSource]='data'>
+    <ng-container matColumnDef='frames'>
+      <th mat-header-cell *matHeaderCellDef>Frame Number</th>
+      <td mat-cell *matCellDef="let frame"> {{data.indexOf(frame)+1}} </td>
+    </ng-container>
+    <ng-container matColumnDef='pins1'>
+      <th mat-header-cell *matHeaderCellDef>Pins Dropped from Throw #1</th>
+      <td mat-cell *matCellDef="let frame"> {{frame.roll1}} </td>
+    </ng-container>
+    <ng-container matColumnDef='pins2'>
+      <th mat-header-cell *matHeaderCellDef>Pins Dropped from Throw #2</th>
+      <td mat-cell *matCellDef="let frame"> {{frame.roll2}} </td>
+    </ng-container>
+    <ng-container matColumnDef='scores'>
+      <th mat-header-cell *matHeaderCellDef>Score</th>
+      <td mat-cell *matCellDef="let frame"> {{frame.score}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+  </table>
+</div>
+<p>
+  POST request --->&nbsp;<span style="color:blueviolet" *ngIf="postRequestDone">Done</span>
+</p>
+<p>
+  POST response:&nbsp;<span style="color:blueviolet" *ngIf="postResponseDone">{{postResponseText}}</span>
+</p>
