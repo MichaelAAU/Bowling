@@ -1,6 +1,6 @@
 <p>
   GET request --->&nbsp;<span style="color:blueviolet" *ngIf="getRequestDone">Done</span>
-  <button mat-raised-button color="accent"
+  <button mat-raised-button color="accent" id="appButton"
     (click)="onCalculateGame()">
     Calculate New Game
   </button>
@@ -34,5 +34,5 @@
   POST request --->&nbsp;<span style="color:blueviolet" *ngIf="postRequestDone">Done</span>
 </p>
 <p>
-  POST response:&nbsp;<span style="color:blueviolet" *ngIf="postResponseDone">{{postResponseText}}</span>
+  POST response:&nbsp;<span style="color:blueviolet" id="result" *ngIf="postResponseDone">{{postResponseText}}</span>
 </p>
