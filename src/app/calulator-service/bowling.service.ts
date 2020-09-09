@@ -49,7 +49,7 @@ export class BowlingService {
     this.state = this.rollingFirstBall;
     for(var index in frames) {
       this.calculate(frames[index][0], frames.length);
-      if ((frames[index][0] != 10) || (frames[index][0] == 10 && frames[index][1] == 10)) {
+      if ((frames[index][0] != 10) || (index == "10")) { // not a strike, or bonus pins
         this.calculate(frames[index][1], frames.length);
       }
     }
@@ -114,7 +114,10 @@ export class BowlingService {
           case 10: { // a strike
             this.rollingFrame++;
             this.state = this.twoConsecutiveStrikes;
-            break;
+            if (this.rollingFrame > totalFrames && this.rollingFrame < 12) { //points end on a strike, b4 normal game end
+              this.addScore(20); // = no bonus, only 20
+              this.addScore(10); // = no bonus, only 10
+            } break;
           }
           default: {
             this.firstBallPins = pins;
@@ -147,7 +150,10 @@ export class BowlingService {
         switch (pins) {
           case 10: { // a strike
             this.rollingFrame++;
-            break;
+            if (this.rollingFrame > totalFrames && this.rollingFrame < 12) { //points end on a strike, b4 normal game end
+              this.addScore(20); // = no bonus, only 20
+              this.addScore(10); // = no bonus, only 10
+            } break;
           }
           default: {
             this.firstBallPins = pins;

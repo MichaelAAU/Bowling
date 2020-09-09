@@ -29,12 +29,11 @@ export class CalculatorComponent {
   data: ScoreDisplay[] = [];
   columnsToDisplay = ['frames', 'pins1', 'pins2', 'scores'];
 
-  onCalculateGame() {
-    this.getResponseDone = false; this.data = []; this.postRequestDone = false; this.postResponseDone = false;
-    this.getRequestDone = true;
+  calculateGame() {
+    this.getResponseText= ""; this.postResponseText=""; this.data = [];
+    this.postRequestDone = false; this.getRequestDone = true;
     this.bowlingService.getRequest().then((getResult: GetResponse)=>{
       this.getResponseText = JSON.stringify(getResult);
-      this.getResponseDone = true;
 
       this.postRequest.points = this.bowlingService.scoreCalculation(getResult.points);
       this.data = this.bowlingService.tableCalculation(getResult.points, this.postRequest.points);
@@ -44,7 +43,6 @@ export class CalculatorComponent {
       this.postRequestDone = true;
       this.bowlingService.postRequest(this.postRequest).then((postResult: PostResponse)=>{
         this.postResponseText = JSON.stringify(postResult);
-        this.postResponseDone = true;
       });
     });
   }
