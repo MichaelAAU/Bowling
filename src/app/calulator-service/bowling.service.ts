@@ -49,7 +49,7 @@ export class BowlingService {
     this.state = this.rollingFirstBall;
     for(var index in frames) {
       this.calculate(frames[index][0], frames.length);
-      if ((frames[index][0] != 10) || (index == "10")) { // not a strike, or bonus pins
+      if ((frames[index][0] != 10) || (index == "10")) { // if it's not a strike, or bonus pins
         this.calculate(frames[index][1], frames.length);
       }
     }
@@ -63,7 +63,7 @@ export class BowlingService {
           case 10: { // a strike
             this.rollingFrame++;
             this.state=this.lastBallStrike;
-            if (this.rollingFrame > totalFrames) { //points end on a strike
+            if (this.rollingFrame > totalFrames) { // if points end on a strike
               this.addScore(10); // = no bonus, only 10
             } break;
           }
@@ -79,13 +79,13 @@ export class BowlingService {
           case 10: { // a spare
             this.rollingFrame++;
             this.state = this.lastBallSpare;
-            if (this.rollingFrame > totalFrames) { //points end on a spare
+            if (this.rollingFrame > totalFrames) { // if points end on a spare
               this.addScore(10); // = no bonus, only 10
             } break;
           }
           default: {
             this.rollingFrame++;
-            if (this.rollingFrame < 12) { // b4 normal game end
+            if (this.rollingFrame < 12) { // if it's before normal game end
               this.addScore(this.firstBallPins + pins); // normal points
               this.state = this.rollingFirstBall;
             } break;
@@ -93,12 +93,12 @@ export class BowlingService {
         } break;
       }
       case this.lastBallSpare: {
-        this.addScore(10 + pins); // spare bonus points
+        this.addScore(10 + pins); // add spare bonus points
         switch (pins) {
           case 10: { // strike
             this.rollingFrame++;
             this.state = this.lastBallStrike;
-            if (this.rollingFrame > totalFrames && this.rollingFrame < 12) { //points end on a strike, b4 normal game end
+            if (this.rollingFrame > totalFrames && this.rollingFrame < 12) { // if points end on a strike, before normal game end
               this.addScore(10); // = no bonus, only 10
             } break;
           }
@@ -114,7 +114,7 @@ export class BowlingService {
           case 10: { // a strike
             this.rollingFrame++;
             this.state = this.twoConsecutiveStrikes;
-            if (this.rollingFrame > totalFrames && this.rollingFrame < 12) { //points end on a strike, b4 normal game end
+            if (this.rollingFrame > totalFrames && this.rollingFrame < 12) { // if points end on a strike, b4 normal game end
               this.addScore(20); // = no bonus, only 20
               this.addScore(10); // = no bonus, only 10
             } break;
@@ -127,18 +127,18 @@ export class BowlingService {
         } break;
       }
       case this.twoBallsAgoStrike: {
-        this.addScore(10 + this.firstBallPins + pins); // strike bonus points
+        this.addScore(10 + this.firstBallPins + pins); // add strike bonus points
         switch (this.firstBallPins + pins) {
           case (10): { // spare
             this.rollingFrame++;
             this.state = this.lastBallSpare;
-            if (this.rollingFrame > totalFrames && this.rollingFrame < 12) { //points end on a spare, b4 normal game end
+            if (this.rollingFrame > totalFrames && this.rollingFrame < 12) { //if points end on a spare, before normal game end
               this.addScore(10); // = no bonus, only 10
             } break;
           }
           default:  {
             this.rollingFrame++;
-            if (this.rollingFrame < 12) { // b4 normal game end
+            if (this.rollingFrame < 12) { // if it's before normal game end
               this.addScore(this.firstBallPins + pins); // normal points
               this.state = this.rollingFirstBall;
             } break;
@@ -146,11 +146,11 @@ export class BowlingService {
         } break;
       }
       case this.twoConsecutiveStrikes: {
-        this.addScore(10 + 10 + pins); // strike bonus points
+        this.addScore(10 + 10 + pins); // add strike bonus points
         switch (pins) {
           case 10: { // a strike
             this.rollingFrame++;
-            if (this.rollingFrame > totalFrames && this.rollingFrame < 12) { //points end on a strike, b4 normal game end
+            if (this.rollingFrame > totalFrames && this.rollingFrame < 12) { // if points end on a strike, b4 normal game end
               this.addScore(20); // = no bonus, only 20
               this.addScore(10); // = no bonus, only 10
             } break;
