@@ -10,3 +10,5 @@ spec:
   type: website
   owner: michalis-gratsias
   lifecycle: experimental
+  providesApis:
+    - bowling
