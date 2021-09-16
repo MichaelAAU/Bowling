@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: bowling calculator
+  description: |
+    A front-end application for receiving and calculating Bowling game points.
+  annotations:
+    github.com/project-slug: MichaelAAU/Bowling
+spec:
+  type: website
+  owner: michalis-gratsias
+  lifecycle: experimental
