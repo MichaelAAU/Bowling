@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: bowling
+  description: The API used for the Bowling case
+spec:
+  type: openapi
+  lifecycle: production
+  owner: michalis-gratsias
+  definition:
+    $text: https://api.apis.guru/v2/specs/spotify.com/v1/swagger.yaml
